@@ -60,6 +60,12 @@ export default async function TeamMemberPage({
     worksFor: { "@type": "LegalService", name: siteConfig.name },
   }
 
+  const crumbs = [
+    { name: "Início", path: "/" },
+    { name: "Equipe", path: "/equipe" },
+    { name: member.name, path: `/equipe/${member.slug}` },
+  ]
+
   return (
     <>
       <script
@@ -68,23 +74,9 @@ export default async function TeamMemberPage({
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbJsonLd([
-              { name: "Início", path: "/" },
-              { name: "Equipe", path: "/equipe" },
-              { name: member.name, path: `/equipe/${member.slug}` },
-            ])
-          ),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
       />
-      <Breadcrumbs
-        items={[
-          { name: "Início", path: "/" },
-          { name: "Equipe", path: "/equipe" },
-          { name: member.name, path: `/equipe/${member.slug}` },
-        ]}
-      />
+      <Breadcrumbs items={crumbs} />
 
       <section className="container-editorial grid gap-14 pt-8 pb-20 sm:pt-10 sm:pb-24 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
         <ImagePlaceholder
@@ -127,6 +119,7 @@ export default async function TeamMemberPage({
           <div className="flex flex-wrap gap-3 pt-2">
             <Button
               render={<Link href="/contato" />}
+              nativeButton={false}
               size="lg"
               className="rounded-full px-7 text-base"
             >
@@ -135,6 +128,7 @@ export default async function TeamMemberPage({
             </Button>
             <Button
               render={<a href={`mailto:${member.email}`} />}
+              nativeButton={false}
               variant="outline"
               size="lg"
               className="rounded-full px-7 text-base"

@@ -5,7 +5,7 @@ import { siteConfig, buildWhatsappUrl } from "@/lib/constants"
 import { PageHero } from "@/components/shared/page-hero"
 import { ImagePlaceholder } from "@/components/shared/image-placeholder"
 import { ContactForm } from "@/components/forms/contact-form"
-import { WhatsappIcon } from "@/components/shared/whatsapp-icon"
+import { WhatsappCtaLabel } from "@/components/shared/whatsapp-cta-label"
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -67,9 +67,7 @@ export default function ContatoPage() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 rounded-full bg-forest px-6 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
           >
-            <WhatsappIcon className="size-4" />
-            Falar pelo WhatsApp
-            <span className="sr-only"> (abre em nova aba)</span>
+            <WhatsappCtaLabel />
           </a>
 
           <ImagePlaceholder

@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { buildWhatsappUrl } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
-import { WhatsappIcon } from "@/components/shared/whatsapp-icon"
+import { WhatsappCtaLabel } from "@/components/shared/whatsapp-cta-label"
 
 export function CtaSection() {
   return (
@@ -17,6 +17,7 @@ export function CtaSection() {
         <div className="mt-2 flex flex-col gap-3 sm:flex-row">
           <Button
             render={<Link href="/contato" />}
+            nativeButton={false}
             size="lg"
             variant="secondary"
             className="rounded-full px-7 text-base"
@@ -27,12 +28,11 @@ export function CtaSection() {
             render={
               <a href={buildWhatsappUrl()} target="_blank" rel="noopener noreferrer" />
             }
+            nativeButton={false}
             size="lg"
             className="rounded-full border border-primary-foreground/30 bg-transparent px-7 text-base text-primary-foreground hover:bg-primary-foreground/10"
           >
-            <WhatsappIcon className="size-4" />
-            Falar pelo WhatsApp
-            <span className="sr-only"> (abre em nova aba)</span>
+            <WhatsappCtaLabel />
           </Button>
         </div>
       </div>

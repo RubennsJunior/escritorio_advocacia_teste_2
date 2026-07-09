@@ -67,6 +67,12 @@ export default async function ArticlePage({
     year: "numeric",
   })
 
+  const crumbs = [
+    { name: "Início", path: "/" },
+    { name: "Artigos", path: "/artigos" },
+    { name: article.title, path: `/artigos/${article.slug}` },
+  ]
+
   return (
     <>
       <script
@@ -75,23 +81,9 @@ export default async function ArticlePage({
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbJsonLd([
-              { name: "Início", path: "/" },
-              { name: "Artigos", path: "/artigos" },
-              { name: article.title, path: `/artigos/${article.slug}` },
-            ])
-          ),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
       />
-      <Breadcrumbs
-        items={[
-          { name: "Início", path: "/" },
-          { name: "Artigos", path: "/artigos" },
-          { name: article.title, path: `/artigos/${article.slug}` },
-        ]}
-      />
+      <Breadcrumbs items={crumbs} />
 
       <article className="container-editorial flex flex-col gap-10 pt-8 pb-20 sm:pt-10 sm:pb-24">
         <header className="flex max-w-3xl flex-col gap-5">

@@ -12,7 +12,12 @@ export default function NotFound() {
       <p className="max-w-sm text-base leading-relaxed text-muted-foreground">
         O conteúdo que você procura pode ter sido movido ou não existe mais.
       </p>
-      <Button render={<Link href="/" />} size="lg" className="rounded-full px-7">
+      <Button
+        render={<Link href="/" />}
+        nativeButton={false}
+        size="lg"
+        className="rounded-full px-7"
+      >
         Voltar ao início
       </Button>
     </section>

@@ -24,8 +24,17 @@ export function SiteHeader() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
-    onScroll()
+    let ticking = false
+    const update = () => {
+      setScrolled(window.scrollY > 12)
+      ticking = false
+    }
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
+    update()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
@@ -68,6 +77,7 @@ export function SiteHeader() {
         <div className="hidden md:block">
           <Button
             render={<Link href="/contato" />}
+            nativeButton={false}
             size="lg"
             className="rounded-full px-6"
           >
@@ -103,6 +113,7 @@ export function SiteHeader() {
                 <SheetClose
                   key={item.href}
                   render={<Link href={item.href} />}
+                  nativeButton={false}
                   className="rounded-md px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
                 >
                   {item.label}
@@ -111,9 +122,11 @@ export function SiteHeader() {
             </nav>
             <div className="mt-auto flex flex-col gap-3 p-4">
               <SheetClose
+                nativeButton={false}
                 render={
                   <Button
                     render={<Link href="/contato" />}
+                    nativeButton={false}
                     size="lg"
                     className="w-full rounded-full"
                   />

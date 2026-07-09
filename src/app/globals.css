@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -11,7 +9,7 @@
   --font-sans: var(--font-manrope);
   --font-body: var(--font-manrope);
   --font-heading: var(--font-playfair);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Brand accents, used sparingly and directly (bg-gold, text-petroleum, etc.) */
   --color-gold: var(--gold);
@@ -115,55 +113,61 @@
      Tom escurecido para atingir contraste AA (4.5:1+) como texto/ícone. */
   --gold: #8a6829;
   --gold-foreground: #23262a;
-  --petroleum: #1d3a3e;
+  /* Alias, não um hex duplicado — garante que petroleum nunca diverge de primary. */
+  --petroleum: var(--primary);
 }
 
-.dark {
-  --background: #1b1d1f;
-  --foreground: #f0eee6;
+/* Sem seletor de tema manual neste projeto — o escuro segue a preferência
+   do sistema operacional automaticamente (não uma classe `.dark` que
+   nada aqui aplica). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1b1d1f;
+    --foreground: #f0eee6;
 
-  --card: #23262a;
-  --card-foreground: #f0eee6;
-  --popover: #23262a;
-  --popover-foreground: #f0eee6;
+    --card: #23262a;
+    --card-foreground: #f0eee6;
+    --popover: #23262a;
+    --popover-foreground: #f0eee6;
 
-  --primary: #cfe0de;
-  --primary-foreground: #1d3a3e;
+    --primary: #cfe0de;
+    --primary-foreground: #1d3a3e;
 
-  --secondary: #2c2f32;
-  --secondary-foreground: #f0eee6;
+    --secondary: #2c2f32;
+    --secondary-foreground: #f0eee6;
 
-  --muted: #2c2f32;
-  --muted-foreground: #a8aba2;
+    --muted: #2c2f32;
+    --muted-foreground: #a8aba2;
 
-  --accent: #2c2f32;
-  --accent-foreground: #cfe0de;
+    --accent: #2c2f32;
+    --accent-foreground: #cfe0de;
 
-  --destructive: #d97a68;
+    --destructive: #d97a68;
 
-  --border: color-mix(in oklch, white 12%, transparent);
-  --input: color-mix(in oklch, white 15%, transparent);
-  --ring: #cfe0de;
+    --border: color-mix(in oklch, white 12%, transparent);
+    --input: color-mix(in oklch, white 15%, transparent);
+    --ring: #cfe0de;
 
-  --chart-1: #cfe0de;
-  --chart-2: #a9c7ae;
-  --chart-3: #d6b874;
-  --chart-4: #a8aba2;
-  --chart-5: #d97a68;
+    --chart-1: #cfe0de;
+    --chart-2: #a9c7ae;
+    --chart-3: #d6b874;
+    --chart-4: #a8aba2;
+    --chart-5: #d97a68;
 
-  --sidebar: #1b1d1f;
-  --sidebar-foreground: #f0eee6;
-  --sidebar-primary: #cfe0de;
-  --sidebar-primary-foreground: #1d3a3e;
-  --sidebar-accent: #2c2f32;
-  --sidebar-accent-foreground: #cfe0de;
-  --sidebar-border: color-mix(in oklch, white 12%, transparent);
-  --sidebar-ring: #cfe0de;
+    --sidebar: #1b1d1f;
+    --sidebar-foreground: #f0eee6;
+    --sidebar-primary: #cfe0de;
+    --sidebar-primary-foreground: #1d3a3e;
+    --sidebar-accent: #2c2f32;
+    --sidebar-accent-foreground: #cfe0de;
+    --sidebar-border: color-mix(in oklch, white 12%, transparent);
+    --sidebar-ring: #cfe0de;
 
-  --forest: #a9c7ae;
-  --gold: #d6b874;
-  --gold-foreground: #1b1d1f;
-  --petroleum: #cfe0de;
+    --forest: #a9c7ae;
+    --gold: #d6b874;
+    --gold-foreground: #1b1d1f;
+    --petroleum: var(--primary);
+  }
 }
 
 @layer base {

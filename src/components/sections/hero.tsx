@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 import { buildWhatsappUrl } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
 import { ImagePlaceholder } from "@/components/shared/image-placeholder"
-import { WhatsappIcon } from "@/components/shared/whatsapp-icon"
+import { WhatsappCtaLabel } from "@/components/shared/whatsapp-cta-label"
 import { FadeIn } from "@/components/shared/fade-in"
 
 const stats = [
@@ -32,19 +32,23 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button render={<Link href="/contato" />} size="lg" className="rounded-full px-7 text-base">
+          <Button
+            render={<Link href="/contato" />}
+            nativeButton={false}
+            size="lg"
+            className="rounded-full px-7 text-base"
+          >
             Agendar Consulta
             <ArrowRight className="size-4" />
           </Button>
           <Button
             render={<a href={buildWhatsappUrl()} target="_blank" rel="noopener noreferrer" />}
+            nativeButton={false}
             variant="outline"
             size="lg"
             className="rounded-full px-7 text-base"
           >
-            <WhatsappIcon className="size-4" />
-            Falar pelo WhatsApp
-            <span className="sr-only"> (abre em nova aba)</span>
+            <WhatsappCtaLabel />
           </Button>
         </div>
 

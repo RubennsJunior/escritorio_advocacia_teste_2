@@ -22,8 +22,10 @@ export const contactFormSchema = z.object({
     .trim()
     .min(10, "Conte um pouco mais sobre o seu caso (mínimo 10 caracteres).")
     .max(2000, "Mensagem muito longa."),
-  // Honeypot: campo invisível para usuários reais. Se preenchido, é bot.
-  website: z.string().max(0, "Falha na validação.").optional().or(z.literal("")),
+  // Honeypot: campo invisível para usuários reais. Deve sempre passar na
+  // validação (nunca rejeitar aqui) — quem decide se é bot é a rota da API,
+  // que descarta silenciosamente qualquer valor não vazio.
+  website: z.string().optional(),
 })
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>

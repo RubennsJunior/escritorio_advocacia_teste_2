@@ -50,25 +50,19 @@ export default async function PracticeAreaDetailPage({
   const relatedLawyers = team.filter((member) => member.areas.includes(area.slug))
   const otherAreas = practiceAreas.filter((item) => item.slug !== area.slug).slice(0, 3)
 
-  const jsonLd = breadcrumbJsonLd([
+  const crumbs = [
     { name: "Início", path: "/" },
     { name: "Áreas de Atuação", path: "/areas-de-atuacao" },
     { name: area.title, path: `/areas-de-atuacao/${area.slug}` },
-  ])
+  ]
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
       />
-      <Breadcrumbs
-        items={[
-          { name: "Início", path: "/" },
-          { name: "Áreas de Atuação", path: "/areas-de-atuacao" },
-          { name: area.title, path: `/areas-de-atuacao/${area.slug}` },
-        ]}
-      />
+      <Breadcrumbs items={crumbs} />
 
       <section className="container-editorial grid gap-14 pt-8 pb-16 sm:pt-10 lg:grid-cols-2 lg:items-center lg:gap-20">
         <div className="flex flex-col gap-6">
@@ -81,6 +75,7 @@ export default async function PracticeAreaDetailPage({
           </p>
           <Button
             render={<Link href="/contato" />}
+            nativeButton={false}
             size="lg"
             className="w-fit rounded-full px-7 text-base"
           >

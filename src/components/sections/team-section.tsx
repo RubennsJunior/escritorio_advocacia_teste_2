@@ -21,7 +21,7 @@ export function TeamSection() {
         </Link>
       </div>
 
-      <TeamGrid limit={4} />
+      <TeamGrid limit={3} />
     </section>
   )
 }
